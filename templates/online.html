@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <style>
+            .online{
+                color: green;
+            }
+            .offline{
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <table> 
+            {% for user in users %}
+            {% if user.userprofile.online %}
+            <div class="online">
+                <br>
+                {{user.username}} : online
+            {% else %}
+            </div>
+            <div class="offline">
+                <br>
+                {{user.username}} : offline
+            {% endif %}
+            </div>
+            {% endfor %}
+          </table>
+    </body>
+</html>

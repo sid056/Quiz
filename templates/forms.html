@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <style>
+            table{
+                font-size: 28spx;
+                font-style: normal;
+                font-weight: normal;
+            }
+        </style>
+    </head>
+    <body>
+        <form method="POST">{%csrf_token%}
+            <table>
+                {{quest.as_table}}
+            </table>
+            <input type="submit" value="submit">
+        </form>
+    </body>
+</html>

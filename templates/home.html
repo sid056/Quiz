@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <style>
+            .styl{
+                border:5px solid black;
+                margin-top: 100px;
+                padding: 5px;
+                display:inline-block;
+                margin-left: 40%;
+                margin-top: 10%;
+            }
+            .button1 {
+                    background-color: #4CAF50;
+                    border: none;
+                    color: white;
+                    padding: 15px 32px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    margin: 4px 2px;
+                    cursor: pointer;
+                }
+            .button2 {
+                    background-color: rgb(146, 32, 212);
+                    border: none;
+                    color: white;
+                    padding: 15px 32px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    margin: 4px 2px;
+                    cursor: pointer;
+                }
+            .menu{
+                position: sticky;
+                width: 30%;
+                border:5px dotted black;
+                float: right;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="menu" align="right">
+            <button><a href="/logout/" style="text-decoration: none;">logout</a></button>
+            <button><a href="/online/" style="text-decoration: none;">Active Users</a></button>
+        </div>
+        <div class="styl" >
+            <form>
+                <table >
+                    <tr>
+                        <td>
+                            <button class="button1" >
+                                <a href="/quiz" style="text-decoration: none;">Make Quiz</a>
+                            </button>
+                        </td>                    
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="button2">
+                                <a href="/start" style="text-decoration: none;">Start Quiz</a>
+                            </button>
+                        </td>                    
+                    </tr>
+                </table>
+            </form>
+        </div>               
+    </body>
+</html>

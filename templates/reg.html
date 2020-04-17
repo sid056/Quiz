@@ -1,0 +1,32 @@
+<html>
+    <heda>
+        <style>
+            .wrapper {
+                        text-align: center;
+                        margin-left: 20px;
+                    }
+
+            .button {
+                        background-color: cornflowerblue;
+                        font-size: 20px;
+                    } 
+            .table {
+                border: 5px dotted black ;
+            }
+        </style>
+    </heda>
+    <body>
+        <form method="POST">
+            {%csrf_token%}
+            <div class="wrapper">
+            <table align="center">
+                {{form1.as_table}}
+                {{form2.as_table}}
+            </table>
+            <br>
+            <br>
+            <button class="button">Button</button>
+            </div>
+        </form>
+    </body>
+</html>

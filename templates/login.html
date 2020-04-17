@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <style>
+            .error{
+                color : red;
+                display: block;
+                font-weight: bolder;
+                background-color: white;
+                margin-left: 10%;
+                margin-right: 10%;
+            }
+            .main{
+                border: 5px dotted green;
+                background-color: grey;
+                display: block;
+                margin-left: 30%;
+                margin-right: 30%;
+                margin-top: 10%;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <br>
+            <br>
+            <form method="POST" >
+                <table align="center">
+                    {%csrf_token%}
+                    {{form.as_table}}
+                </table>
+                <br>
+                <input type="submit" value="Login">         
+            </form>
+            <a href="/register" >New user ? click here to register </a>
+            <br><br>
+            <div class="error">
+                {{val}}
+            </div>
+            <br>
+            <br>
+        </div>
+    </body>
+</html>

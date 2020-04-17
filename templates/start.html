@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <style>
+            .main{
+                border: 5px dotted green;
+                background-color: grey;
+                display: block;
+                margin-left: 30%;
+                margin-right: 30%;
+                margin-top: 10%;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <form  method="POST">
+                {%csrf_token%}
+                {% for num in lst %}
+                <table>
+                    <tr colspan=4 rowspan=4 style="border: 5px solid black; ">
+                        <td>
+                            <label>
+                                {{db.objects.get(id=num).question}}
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="radio" id="option">{{db.objects.get(id=num).choice1}}
+                        </td>
+                        <td>
+                            <input type="radio" id="option">{{db.objects.get(id=num).choice2}}
+                        </td>
+                        <td>
+                            <input type="radio" id="option">{{db.objects.get(id=num).choice3}}
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" value="submit">
+            </form>
+                {% endfor %}
+        </div>
+    </body>
+</html>
