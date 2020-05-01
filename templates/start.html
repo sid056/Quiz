@@ -1,5 +1,42 @@
 <html>
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            var list = "{{ lst }}"
+            var data = "{{ db }}"
+            data = JSON.parse(data)
+            console.log(data)
+            var buttonpress = true ;
+
+            function WaitForIt(){
+                if(!buttonpress)
+                    setTimeout(WaitForIt,10000)
+                else 
+                    return true
+            }
+
+            $(document).ready(function(){
+                $("#start").click(function(){
+                    var i 
+                    for (i=0 ; i<list.length ; i++)
+                    {
+                        $("#question").text();
+
+                    }
+                });
+                });
+            
+            function Questions(){
+                
+                document.getElementById("card").style.visibility = "visible"
+                document.getElementById("question").style.visibility = "visible"
+                document.getElementById("option1").style.visibility = "visible"
+                document.getElementById("option2").style.visibility = "visible"
+                document.getElementById("option3").style.visibility = "visible"
+
+            }
+    
+        </script>
         <style>
             .main{
                 border: 5px dotted green;
@@ -10,36 +47,30 @@
                 margin-top: 10%;
                 text-align: center;
             }
+            .card-extra{
+                margin-left: 30%;
+                margin-right: 30%;
+                position: absolute;
+                top: 10px;
+                visibility: hidden;
+            }
         </style>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+         crossorigin="anonymous">
     </head>
     <body>
-        <div class="main">
-            <form  method="POST">
-                {%csrf_token%}
-                {% for num in lst %}
-                <table>
-                    <tr colspan=4 rowspan=4 style="border: 5px solid black; ">
-                        <td>
-                            <label>
-                                {{db.objects.get(id=num).question}}
-                            </label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" id="option">{{db.objects.get(id=num).choice1}}
-                        </td>
-                        <td>
-                            <input type="radio" id="option">{{db.objects.get(id=num).choice2}}
-                        </td>
-                        <td>
-                            <input type="radio" id="option">{{db.objects.get(id=num).choice3}}
-                        </td>
-                    </tr>
-                </table>
-                <input type="submit" value="submit">
-            </form>
-                {% endfor %}
+        <button id="start" class="btn btn-success" onclick="javascript : Questions();" >click here to start</button><br>
+        <div class="card-extra" id="card" align="center">
+            <div class="card">
+                <div class="card-header" id="question"></div>
+                <div class="card-body">
+                <input type="radio" id="option1" name="option" style="visibility: hidden;">
+                <input type="radio" id="option2" name="option" style="visibility: hidden;">
+                <input type="radio" id="option3" name="option" style="visibility: hidden;">
+                <button id="submit" onclick="ButtonPress();" class="btn btn-primary">Submit</a>
+                </div>
+              </div>
         </div>
     </body>
 </html>
