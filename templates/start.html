@@ -2,17 +2,72 @@
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script>
-            var list = "{{ lst }}"
-            var data = "{{ db }}"
-            data = JSON.parse(data)
-            console.log(data)
-            var buttonpress = true ;
+            var data
+            console.log(window.location)
+            var webStart = 'ws://'
+            if(window.location.protocol == 'https')
+             {   webStart = 'wss://'}
+            var endpoint = webStart + window.location.host + window.location.pathname
+
+            var websocket = new WebSocket(endpoint)
+
+            websocket.onopen = function(e){
+                $("#option1").click(function(e){
+                    console.log(data)
+                    console.log(list)
+                    console.log(questions_data)
+                    websocket.send(JSON.stringify(data))
+                })
+                $("#option2").click(function(e){
+                    console.log(data)
+                    console.log(list)
+                    console.log(questions_data)
+                    websocket.send(JSON.stringify(data))
+                })
+                $("#option3").click(function(e){
+                    console.log(data)
+                    console.log(list)
+                    console.log(questions_data)
+                    websocket.send(JSON.stringify(data))
+                })
+            }
+            websocket.onmessage = function(e){
+                data = e.data
+                data = JSON.parse(data)
+                list = data['list']
+                questions_data = data['data']
+                console.log(data)
+                console.log(list)
+                console.log(questions_data)
+                if (list.length == 0)
+                {
+                    $('#question').text("Quiz Over !!")
+                    document.getElementById('option1').style.visibility = "hidden"
+                    document.getElementById('option2').style.visibility = "hidden"
+                    document.getElementById('option3').style.visibility = "hidden"
+                    document.getElementById('quit').style.visibility = "visible"
+                    return null;
+                }
+                i = list.pop()
+                $('#question').text(questions_data[i]['question'])
+                document.getElementById('option1').value = questions_data[i]['options'][0]
+                document.getElementById('option2').value = questions_data[i]['options'][1]
+                document.getElementById('option3').value = questions_data[i]['options'][2]
+                console.log(i)
+                delete questions_data[i]
+            }
+
+            var buttonpress = false ;
 
             function WaitForIt(){
-                if(!buttonpress)
-                    setTimeout(WaitForIt,10000)
-                else 
-                    return true
+                if (!buttonpress ) {
+                setTimeout(WaitForIt,500);
+                } 
+                else
+                    {   
+                        buttonpress =false
+                        return true
+                    }                    
             }
 
             $(document).ready(function(){
@@ -29,11 +84,11 @@
             function Questions(){
                 
                 document.getElementById("card").style.visibility = "visible"
-                document.getElementById("question").style.visibility = "visible"
-                document.getElementById("option1").style.visibility = "visible"
-                document.getElementById("option2").style.visibility = "visible"
-                document.getElementById("option3").style.visibility = "visible"
+            }
 
+            function ButtonPress(){
+                buttonpress = true ;
+                console.log(buttonpress)
             }
     
         </script>
@@ -52,6 +107,16 @@
                 margin-right: 30%;
                 position: absolute;
                 top: 10px;
+            }
+            .startbutton{
+                position: absolute;
+                left: 10px;
+                top: 10px;
+            }
+            .quitbutton{
+                position: absolute;
+                left: 200px;
+                top: 10px;
                 visibility: hidden;
             }
         </style>
@@ -60,17 +125,19 @@
          crossorigin="anonymous">
     </head>
     <body>
-        <button id="start" class="btn btn-success" onclick="javascript : Questions();" >click here to start</button><br>
-        <div class="card-extra" id="card" align="center">
+        <input type="button" id="start" class="btn btn-success startbutton" onclick="Questions();" value="click here to start" ><br>
+        <button id="quit" class="btn btn-danger quitbutton" onclick="location.href='/home/'">Go to Home</button>
+        <div class="card-extra" style="visibility: hidden;" id="card" align="center">
             <div class="card">
                 <div class="card-header" id="question"></div>
                 <div class="card-body">
-                <input type="radio" id="option1" name="option" style="visibility: hidden;">
-                <input type="radio" id="option2" name="option" style="visibility: hidden;">
-                <input type="radio" id="option3" name="option" style="visibility: hidden;">
-                <button id="submit" onclick="ButtonPress();" class="btn btn-primary">Submit</a>
+                <input type="button" id="option1" onclick="ButtonPress();">
+                <input type="button" id="option2" onclick="ButtonPress();">
+                <input type="button" id="option3" onclick="ButtonPress();">
                 </div>
               </div>
         </div>
+
+        <br><br>
     </body>
 </html>

@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'channels',
+
     'home',
     'save',
     'start',
@@ -77,6 +80,7 @@ TEMPLATES = [
 
 
 WSGI_APPLICATION = 'quiz.wsgi.application'
+ASGI_APPLICATION = 'quiz.routing.application'
 
 
 # Database
