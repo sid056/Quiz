@@ -8,6 +8,7 @@ def Loginview(request) :
     if request.method == 'POST' :
 
         form = Login(request.POST)
+        print(form)
         
         if form.is_valid() :
              username = form.cleaned_data['username']

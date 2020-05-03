@@ -1,5 +1,7 @@
 <html>
     <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        
         <style>
             .styl{
                 border:5px solid black;
@@ -15,7 +17,6 @@
             .menu{
                 position: sticky;
                 width: 30%;
-                border:5px dotted black;
                 float: right;
             }
         </style>
@@ -25,8 +26,8 @@
     </head>
     <body>
         <div class="menu" align="right">
-            <button onclick="location.href='/logout/'">logout</button>
-            <button onclick="location.href='/online/'">Active Users</a></button>
+            <button class="btn" onclick="location.href='/logout/'">logout</button>
+            <button class="btn" onclick="location.href='/online/'">Active Users</a></button>
         </div>
         <div class="styl" >
                 <table >
